@@ -13,7 +13,8 @@ const server = new ApolloServer({
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(express.urlencoded({ extended: true }));
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 async function startGraphQl() {
@@ -23,6 +24,7 @@ async function startGraphQl() {
   })
 }
 startGraphQl();
+
 // if we're in production, serve client/build as static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
